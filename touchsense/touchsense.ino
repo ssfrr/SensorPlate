@@ -7,7 +7,7 @@ const int OSC_IN_PIN = 2;
 // overhead, as the ISR is getting called very frequently (on the order of
 // every 50us for R1=100, R2=4.7M, C=10p)
 const int MEASURE_CYCLES = 5;
-const unsigned long MAX_PERIOD = MEASURE_CYCLES * 1000
+const unsigned long MAX_PERIOD = MEASURE_CYCLES * 1000;
 
 // wait this long between sending UART reports
 const int REPORT_DELAY_MS = 10;
@@ -42,7 +42,7 @@ void loop() {
   Serial.print("{periodMicros: ");
   Serial.print(_periodMicros);
   Serial.println("}");
-  digitalWrite(LED_OUT_PIN, _periodMicros > 200 ? HIGH : LOW);
+  digitalWrite(LED_OUT_PIN, _periodMicros > 100*MEASURE_CYCLES ? HIGH : LOW);
   delay(REPORT_DELAY_MS);
 }
 
